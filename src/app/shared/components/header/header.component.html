@@ -1,0 +1,154 @@
+<header 
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  [class.bg-white]="isScrolled() || isMobileMenuOpen()"
+  [class.shadow-md]="isScrolled() || isMobileMenuOpen()"
+  [class.bg-white/95]="!isScrolled() && !isMobileMenuOpen()"
+  [class.backdrop-blur-md]="!isScrolled() && !isMobileMenuOpen()"
+  [class.border-b]="true"
+  [class.border-pink-100]="true"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo -->
+      <a 
+        href="#home" 
+        (click)="scrollToSection($event, '#home')"
+        class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-esan-pink rounded-lg p-1"
+        aria-label="ESAN MEN'S WEAR Home"
+      >
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-esan-pink to-esan-pink-hover text-white flex items-center justify-center font-black text-xl shadow-pink shadow-sm transition-transform duration-300 group-hover:scale-105">
+          E
+        </div>
+        <div class="flex flex-col text-left">
+          <div class="flex items-center gap-1.5">
+            <span class="font-extrabold text-2xl tracking-tight text-esan-navy group-hover:text-esan-pink transition-colors">
+              ESAN
+            </span>
+            <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-pink-100 text-esan-pink tracking-wide">
+              ஈசன்
+            </span>
+          </div>
+          <span class="text-[11px] font-bold tracking-[0.22em] text-esan-pink uppercase -mt-1">
+            MEN'S WEAR
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+        @for (item of navItems; track item.href) {
+          <a
+            [href]="item.href"
+            (click)="scrollToSection($event, item.href)"
+            class="px-3 py-2 text-sm font-semibold text-esan-navy hover:text-esan-pink rounded-md transition-colors relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-esan-pink"
+          >
+            {{ item.label }}
+            <span class="absolute inset-x-3 bottom-1 h-0.5 bg-esan-pink scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full"></span>
+          </a>
+        }
+      </nav>
+
+      <!-- Desktop Actions: Instagram & Call Now -->
+      <div class="hidden sm:flex items-center space-x-2.5">
+        <!-- Instagram Link -->
+        <a
+          [href]="business().instagramUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-pink-200 text-xs font-bold text-esan-pink hover:bg-pink-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-esan-pink"
+          aria-label="Follow ESAN MEN'S WEAR on Instagram"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span class="hidden md:inline">&#64;esan_mens_wear</span>
+        </a>
+
+        <!-- Call Now Button -->
+        <a
+          [href]="business().phoneUrl"
+          class="inline-flex items-center gap-2 px-4 lg:px-5 py-2.5 rounded-full bg-esan-pink hover:bg-esan-pink-hover text-white text-xs lg:text-sm font-bold shadow-pink transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-esan-pink"
+          aria-label="Call ESAN MEN'S WEAR at +91 99444 31896"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>Call Now</span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex lg:hidden items-center">
+        <button
+          type="button"
+          (click)="toggleMobileMenu()"
+          class="inline-flex items-center justify-center p-2 rounded-lg text-esan-navy hover:text-esan-pink hover:bg-pink-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-esan-pink"
+          [attr.aria-expanded]="isMobileMenuOpen()"
+          aria-label="Toggle navigation menu"
+        >
+          @if (!isMobileMenuOpen()) {
+            <!-- Hamburger Icon -->
+            <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          } @else {
+            <!-- Close Icon -->
+            <svg class="w-6 h-6 stroke-current stroke-2 fill-none" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  @if (isMobileMenuOpen()) {
+    <div class="lg:hidden bg-white border-b border-pink-100 shadow-xl px-4 pt-2 pb-6 space-y-1 animate-fadeIn">
+      @for (item of navItems; track item.href) {
+        <a
+          [href]="item.href"
+          (click)="scrollToSection($event, item.href)"
+          class="block px-3 py-2.5 rounded-lg text-base font-semibold text-esan-navy hover:text-esan-pink hover:bg-pink-50 transition-colors"
+        >
+          {{ item.label }}
+        </a>
+      }
+      <div class="pt-4 border-t border-gray-100 flex flex-col gap-2.5">
+        <a
+          [href]="business().instagramUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold text-center shadow-sm"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>Follow &#64;esan_mens_wear on Instagram</span>
+        </a>
+        <a
+          [href]="business().phoneUrl"
+          class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-esan-pink hover:bg-esan-pink-hover text-white font-bold text-center shadow-pink"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>Call Now (+91 99444 31896)</span>
+        </a>
+        <a
+          [href]="business().whatsappUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-center shadow-sm"
+        >
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 18.08c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.12 8.12 0 01-1.25-4.32c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4 1.55 1.55 2.4 3.61 2.4 5.8 0 4.52-3.68 8.18-8.16 8.18z"/>
+          </svg>
+          <span>WhatsApp Enquiry</span>
+        </a>
+      </div>
+    </div>
+  }
+</header>

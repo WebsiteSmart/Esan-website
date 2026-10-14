@@ -1,0 +1,95 @@
+<section id="collections" class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-xs font-bold text-esan-pink uppercase tracking-widest mb-3">
+        In-Store Clothing Range
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-esan-navy tracking-tight">
+        Featured Collections
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-esan-text-muted leading-relaxed">
+        Browse real styles currently available at ESAN MEN'S WEAR, from 18+ shades of solid cotton shirts to stylish mandarin collars and everyday denim.
+      </p>
+    </div>
+
+    <!-- 8 Categories Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      @for (cat of categories(); track cat.id) {
+        <article class="group relative flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-pink-300 shadow-soft hover:shadow-card transition-all duration-300 hover:-translate-y-1">
+          
+          <!-- Image Container -->
+          <div class="relative aspect-[4/5] w-full overflow-hidden bg-pink-50">
+            <img
+              [src]="cat.imageUrl"
+              [alt]="cat.name + ' collection at ESAN MEN\'S WEAR'"
+              class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              (error)="onImageError($event)"
+            />
+            
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+            <!-- Badges -->
+            <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+              @if (cat.badge) {
+                <span class="px-2.5 py-1 text-xs font-bold rounded-lg bg-esan-pink text-white shadow-sm tracking-wide">
+                  {{ cat.badge }}
+                </span>
+              }
+              @if (cat.brandTag) {
+                <span class="px-2 py-0.5 text-[10px] font-black uppercase rounded bg-esan-navy/90 text-white tracking-wider">
+                  {{ cat.brandTag }}
+                </span>
+              }
+            </div>
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-lg font-bold text-esan-navy group-hover:text-esan-pink transition-colors">
+                {{ cat.name }}
+              </h3>
+              <p class="mt-2 text-sm text-esan-text-muted leading-relaxed">
+                {{ cat.description }}
+              </p>
+            </div>
+
+            <!-- WhatsApp Enquiry Link -->
+            <div class="mt-5 pt-4 border-t border-gray-100">
+              <a
+                [href]="getWhatsAppLink(cat)"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-between w-full text-xs sm:text-sm font-bold text-esan-navy group-hover:text-esan-pink transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-esan-pink rounded-md"
+                [attr.aria-label]="'Enquire about ' + cat.name + ' on WhatsApp'"
+              >
+                <span class="flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-[#25D366] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm0 18.08c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.12 8.12 0 01-1.25-4.32c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4 1.55 1.55 2.4 3.61 2.4 5.8 0 4.52-3.68 8.18-8.16 8.18z"/>
+                  </svg>
+                  WhatsApp Enquiry
+                </span>
+                <span class="transform translate-x-0 group-hover:translate-x-1 transition-transform">
+                  &rarr;
+                </span>
+              </a>
+            </div>
+
+          </div>
+
+        </article>
+      }
+    </div>
+
+    <!-- Note on Stock -->
+    <div class="mt-12 text-center">
+      <p class="text-xs text-esan-text-muted">
+        Categories represent our active in-store range. Visit our shop in Athimarapatti or chat on WhatsApp to check sizes and real-time color availability.
+      </p>
+    </div>
+
+  </div>
+</section>
